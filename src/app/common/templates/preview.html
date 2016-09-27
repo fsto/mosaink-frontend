@@ -1,0 +1,83 @@
+<!-- <div id="background-image"></div> -->
+
+<div id="preview-page" class="clearfix">
+    <div class="mosaink-preview-container">
+        <div class="mosaink-preview">
+            <div mos-frame
+                 username="fredrikstockman"
+                 min-images="64"
+                 ratio-width="1"
+                 ratio-height="1"
+                 state="state"></div>
+        </div>
+        <!-- <div class="mosaink-preview-size-container">
+            <div class="mosaink-preview-size-stroke-left-edge"></div>
+            <div class="mosaink-preview-size-stroke"></div>
+            <div class="mosaink-preview-size-stroke-right-edge"></div>
+            <p class="mosaink-preview-size-text-container">
+                <span class="mosaink-preview-size-text">
+                    70x70 cm
+                </span>
+            </p>
+        </div> -->
+    </div>
+
+
+    <form action="" method="POST">
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_4ZoLH2gwE7TgFwImj12eXrys"
+        data-amount="2000"
+        data-name="Demo Site"
+        data-description="2 widgets ($20.00)"
+        data-image="/128x128.png"
+        data-locale="auto">
+      </script>
+    </form>
+
+    <form>
+        <div
+          mos-instagram-search-input redirect-url="#/{username}"
+          reload="true"
+          pre-filled="username"></div>
+        <button
+          class="mos-button"
+          href=""
+          ng-click="open_payment_modal()"
+          ng-disabled="state.checkout_disabled">
+          <span ng-if="state.checkout_disabled">
+            Hämtar bilder...
+          </span>
+          <span ng-if="!state.checkout_disabled">
+            Köp 500 kr inkl. frakt
+          </span>
+        </button>
+    </form>
+</div>
+
+<!-- Footer links START -->
+<div id="info" class="fixed-bottom">
+  <div class="links">
+    <a
+      href=""
+      data-container="body"
+      data-animation="am-fade-and-scale"
+      data-template="common/templates/about.html"
+      bs-modal="modal">
+      Om mosaink
+    </a>
+    <a
+      href=""
+      data-container="body"
+      data-animation="am-fade-and-scale"
+      data-template="common/templates/about.html"
+      bs-modal="modal">
+      Hur funkar det?
+    </a>
+    <a
+      ng-click="open_logout_modal()">
+      Logga ut
+    </a>
+  </div>
+  <div class="payment-providers">&nbsp;</div>
+</div>

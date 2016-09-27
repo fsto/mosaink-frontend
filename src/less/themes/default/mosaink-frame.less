@@ -1,0 +1,65 @@
+/***** Mosaink frame *****/
+.mosaink-frame {
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: white;
+    border: 20px solid black;
+    padding: 45px;
+
+    &.no-frame {
+        border: none;
+        padding: 0;
+        padding: 24px;
+
+        .clip-left {
+            position: absolute;
+            top: -365px;
+            left: 82px;
+        }
+
+        .clip-right {
+            position: absolute;
+            top: -365px;
+            right: 73px;
+        }
+    }
+
+    .clip-left,
+    .clip-right {
+        display: none;
+    }
+
+    .frame-row {
+        display: table;
+        white-space: nowrap;
+        display: flex;
+
+        .image-container {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0.2%;
+            flex: 1;
+            position: relative;
+
+            .delete-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                color: red;
+                font: sans-serif;
+                display: none;
+            }
+
+            &:hover {
+                .delete-button {
+                    display: block;
+                }
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

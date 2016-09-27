@@ -1,0 +1,30 @@
+<!-- Image frame -->
+<div class="mosaink-frame"> <!--col-md-offset-1-->
+  <!-- Clips images -->
+  <img class="clip-left" src="/assets/images/clip.png">
+  <img class="clip-right" src="/assets/images/clip.png">
+  <div
+    ng-repeat="image_row in included_image_matrix"
+    class="frame-row">
+    <div
+      ng-repeat="image in image_row"
+      class="image-container"
+      >
+      <div
+        class="delete-button"
+        ng-click="replace_image_and_add_first_excluded_iamge($parent.$index * image_row.length + $index)">X
+      </div>
+      <img
+        class="img-responsive"
+        ng-src="{{image.thumbnail_url_ssl}}"
+        ng-class="{selected: selected_poster_image_i == $parent.$index * image_row.length + $index}">
+    </div>
+  </div>
+  <!-- <table class="tile">
+    <tr ng-repeat="image_row in included_image_matrix">
+      <td ng-repeat="image in image_row">
+        <img ng-src="{{image.thumbnail_url_ssl}}" alt="" ng-click="select_poster_image($parent.$index, $index)"class="img-responsive" ng-class="{selected: selected_poster_image_i == $parent.$index * image_row.length + $index}">
+      </td>
+    </tr>
+  </table> -->
+</div>

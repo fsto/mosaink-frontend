@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="sv"
+      xmlns="http://www.w3.org/1999/xhtml"
+      prefix="og: http://ogp.me/ns#"
+      id="top"
+
+      ng-app="mosaink"
+      ng-cloak
+      class="ng-cloak">
+
+  <head>
+    <title>Mosaink</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Language" content="en"/>
+
+    <meta property="og:image" content="https://mosaink.com/assets/images/og-image.png"/>
+    <meta property="og:title" content="Gör ditt Instagram-flöde till en vacker print"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mosaink.com"/>
+    <meta property="og:site_name" content="Mosaink.com"/>
+    <meta property="og:description" content="Mosaink gör dina instagram-bilder till en vacker och högkvalitativ mosaik på print. Gå till Mosaink.com, se din Mosaink och beställ."/>
+    <!-- <meta property="fb:app_id" content="[FB_APP_ID]" /> -->
+    <meta property="og:locale" content="sv_SE" />
+    <!-- <meta property="article:publisher" content="https://www.facebook.com/mosainkcom" />
+    <meta property="article:author"
+      content="https://www.facebook.com/fredrik.stockman" /> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+
+    <meta name="msapplication-TileImage" content="images/icons/apple-touch-icon-144x144-precomposed.png"/>
+    <meta name="msapplication-TileColor" content="#36b4c4"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400' rel='stylesheet' type='text/css'>
+    <!-- compiled CSS --><% styles.forEach(function (file) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <script type="text/javascript" src="//www.parsecdn.com/js/parse-1.6.4.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <!-- compiled JavaScript --><% scripts.forEach(function (file) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+  </head>
+
+  <body ng-controller="MainCtrl" class="mos-current-page-class">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div id="logo"></div>
+
+    <div ng-view>
+    </div>
+
+  </body>
+
+  <!-- start Mixpanel and GA -->
+  <script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+  typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+  b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+  mixpanel.init("327f2812c1700639a656ecb38f6a2b42");
+
+    // GA Universal Analytics
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47269908-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    // ga.js
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47269908-1', 'auto');
+    // Commenting out to support custom tracking
+    // ga('send', 'pageview');
+  </script>
+</html>

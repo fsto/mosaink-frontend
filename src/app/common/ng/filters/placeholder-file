@@ -1,0 +1,19 @@
+angular.module('mosaink.common')
+
+.filter('cardNumber', function () {
+  return function (card_number) {
+    if (!card_number) { return ''; }
+
+    var value = card_number.toString().trim().replace(/^\+/, '');
+
+    if (value.match(/[^0-9]/)) {
+      return card_number;
+    }
+
+    // if (card_number.length === 15) {
+    //   return card_number.replace(/(.{4})(.{6})(.{5})/g,"$1 $2 $3")
+    // } else {
+      return card_number.replace(/(.{4})/g,"$1 ").trim()
+    // }
+    };
+});

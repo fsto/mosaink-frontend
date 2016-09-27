@@ -1,0 +1,33 @@
+<div class="mos-modal">
+
+    <div class="mos-modal-header clearfix">
+        <span>Mosaink.com</span>
+        <span class="pull-right">
+            <a href="" class="mos-modal-close" ng-click="cancel()">
+              Stäng
+            </a>
+            <a href="" class="mos-modal-close close-box" ng-click="cancel()">
+                X
+            </a>
+        </span>
+    </div>
+
+    <div class="modal-body mos-modal-body payment-success clearfix">
+		<h3>Tack för din beställning!</h3>
+		<p>
+			Vi beräknar att din Mosaink levereras till dig inom 7 dagar.<br>
+            Vid frågor, kontakta oss på <a href="mailto:info@mosaink.com">info@mosaink.com</a>
+		</p>
+
+		<iframe class="facebook-like-box" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fmosainkcom&amp;width=430&amp;height=186&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;appId=228629653877738" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:430px; height:186px;" allowTransparency="true"></iframe>
+
+        <br>
+        <br>
+
+		<a href="/" target="_self" class="mos-button">Stäng</a>
+        <!-- Lägg till "Låt ny person köpa"-knapp och gör så att man loggas ut med modal som förklarar -->
+        <a class="mos-button green" ng-click="open_logout_modal()">
+            Ny köpare
+        </a>
+	</div>
+</div>

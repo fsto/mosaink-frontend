@@ -1,0 +1,194 @@
+<div class="modal" ng-controller="PaymentFormModalCtrl">
+    <div class="mos-modal payment-form">
+        <div class="mos-modal-header clearfix">
+            <span>Betalning i samarbete med Stripe</span>
+            <span class="pull-right">
+                <a href="" class="mos-modal-close" ng-click="$hide()">
+                  Stäng
+                </a>
+                <a href="" class="mos-modal-close close-box" ng-click="$hide()">
+                    X
+                </a>
+            </span>
+        </div>
+
+        <form novalidate name="form.payment" class="form" id="payment-form">
+            <div class="modal-body mos-modal-body clearfix">
+
+                <div class="product-image left-col">
+                    <img ng-src="{{current_user.profile_picture || '/img/logo.png'}}" alt="" class="instagram-avatar">
+                </div>
+
+                <div class="right-col">
+                    <!-- <form class="form" id="payment-form"> -->
+                        <div class="input-row clearfix">
+                            <h3 class="no-top-margin">Leveransadresss</h3>
+                            <p>
+                                Leveranstiden är beräknad till 1 vecka.
+                            </p>
+                        </div>
+
+                        <div class="input-row clearfix">
+                            <!-- <label for="email" class="">Namn</label> -->
+                            <input id="email" class="half-width form-control" type="text" ng-model="email" name="email" placeholder="E-POST*" ng-pattern="EMAIL_REGEXP" ng-blur="visited_email = true" required>
+                        </div>
+                        <p ng-show="(form.payment.email.$dirty && form.payment.email.$invalid && visited_email) || form.payment.email.$invalid && submitted" class="input-row clearfix input-error-message">
+                            Ogiltig E-postadress
+                        </p>
+
+                        <div class="input-row clearfix">
+                            <!-- <label for="first-name" class="">Namn</label> -->
+                            <input id="first-name" class="half-width form-control" type="text" name="first_name" ng-model="first_name" ng-blur="visited_first_name = true" placeholder="FÖRNAMN*" required>
+                            <input id="last-name" class="half-width form-control" type="text" name="last_name" ng-model="last_name" ng-blur="visited_last_name = true" placeholder="EFTERNAMN*" required>
+                        </div>
+                        <p ng-show="((form.payment.first_name.$dirty && form.payment.first_name.$invalid && visited_first_name) || (form.payment.last_name.$dirty && form.payment.last_name.$invalid && visited_last_name)) || ((form.payment.first_name.$invalid && submitted) || form.payment.last_name.$invalid && submitted)" class="input-row clearfix input-error-message">
+                            Ogiltigt för- eller efternamn
+                        </p>
+
+                        <div class="input-row clearfix">
+                            <!-- <label for="shipping-address" class="">Adress</label> -->
+                            <input id="shipping-address" class="form-control" type="text" name="shipping_address" ng-model="shipping_address" ng-blur="visited_shipping_address = true"placeholder="ADRESS*" required>
+                        </div>
+                        <p ng-show="(form.payment.shipping_address.$dirty && form.payment.shipping_address.$invalid && visited_shipping_address) || (form.payment.shipping_address.$invalid && submitted)" class="input-row clearfix input-error-message">
+                            Ogiltig adress
+                        </p>
+
+                        <div class="input-row clearfix">
+                            <!-- <label for="shipping-postal-code" class="">Postnummer</label> -->
+                            <input id="shipping-postal-code" class="form-control" type="text" name="shipping_postal_code" ng-model="shipping_postal_code" ng-blur="visited_shipping_postal_code = true" placeholder="POSTNUMMER*" ng-pattern="POSTAL_CODE_REGEXP" ng-maxlength="6" required>
+                            <!-- <label for="shipping-city" class="">Stad / Ort</label> -->
+                            <input id="shipping-city" class="half-width form-control" type="text" name="shipping_city" ng-model="shipping_city" ng-blur="visited_shipping_city = true" placeholder="ORT*" required>
+                        </div>
+                        <p ng-show="((form.payment.shipping_postal_code.$dirty && form.payment.shipping_postal_code.$invalid && visited_shipping_postal_code) || (form.payment.shipping_city.$dirty && form.payment.shipping_city.$invalid && visited_shipping_city)) || ((form.payment.shipping_postal_code.$invalid && submitted) || (form.payment.shipping_city.$invalid && submitted))" class="input-row clearfix input-error-message">
+                            Ogiltigt postnummer (5 siffror) eller ort
+                        </p>
+
+                </div>
+            </div>
+
+            <hr class="no-margin">
+
+            <div class="modal-body mos-modal-body clearfix">
+                <div class="left-col">&nbsp;</div>
+                <div class="right-col">
+                        <h3 class="no-top-margin">
+                            Betalningsuppgifter
+                            <span class="card-logos" ng-switch on="card_type">
+
+                                <span ng-switch-when="visa">
+                                    <div class="creditcard visa on">&nbsp;</div>
+                                    <div class="creditcard mastercard off">&nbsp;</div>
+                                    <div class="creditcard american-express off">&nbsp;</div>
+                                </span>
+
+                                <span ng-switch-when="mastercard">
+                                    <div class="creditcard visa off">&nbsp;</div>
+                                    <div class="creditcard mastercard on">&nbsp;</div>
+                                    <div class="creditcard american-express off">&nbsp;</div>
+                                </span>
+
+                                <span ng-switch-when="american_express">
+                                    <div class="creditcard visa off">&nbsp;</div>
+                                    <div class="creditcard mastercard off">&nbsp;</div>
+                                    <div class="creditcard american-express on">&nbsp;</div>
+                                </span>
+
+                                <span ng-switch-when="unknown">
+                                    <div class="creditcard visa off">&nbsp;</div>
+                                    <div class="creditcard mastercard off">&nbsp;</div>
+                                    <div class="creditcard american-express off">&nbsp;</div>
+                                </span>
+
+                                <span ng-switch-default>
+                                    <div class="creditcard visa on">&nbsp;</div>
+                                    <div class="creditcard mastercard on">&nbsp;</div>
+                                    <div class="creditcard american-express on">&nbsp;</div>
+                                </span>
+
+                            </span>
+                        </h3>
+
+                        <p>
+                            Krypterad betalning med <a href="https://www.stripe.com/about" target="_blank">Stripe</a>. Vi lagrar inga kortupggifter.
+                        </p>
+
+
+
+                        <div class="input-row clearfix">
+                            <input id="card-holder-name" class="form-control" type="text" name="card_holder_name" ng-model="card_holder_name" ng-blur="visited_card_holder_name = true" placeholder="KORTHÅLLARENS NAMN*" required>
+                        </div>
+                        <p ng-show="(form.payment.card_holder_name.$dirty && form.payment.card_holder_name.$invalid && visited_card_holder_name) || (form.payment.card_holder_name.$invalid && submitted)" class="input-row clearfix input-error-message">
+                            Ogiltigt namn på korthållaren
+                        </p>
+
+                        <div id="visa-mastercard-card-number" class="input-row clearfix">
+                            <label for="card-number" class="width-110">Kortnummer</label>
+                            <input
+                                id="card-number"
+                                class="card-number form-control text-center half-width"
+                                type="text"
+                                size="19"
+                                placeholder="Card number"
+                                ng-model="card_number.number"
+                                autocomplete="off"
+                                ng-maxlength="19"
+                                ng-change="update_card_type(card_number.number); format_card_number(); set_card_number_validity()"
+                                required>
+
+                            <!-- <input id="card-number-part-1" class="card-number form-control text-center" type="text" size="4" placeholder="XXXX" ng-model="card_number_part.one" autocomplete="off" ng-maxlength="4" ng-change="update_card_type(card_number_part.one)" ng-change="set_card_number_validity()" required> -->
+
+                            <!-- VISA & MasterCard Card Number Inputs -->
+                            <!-- <span ng-hide="card_type == 'american_express'">
+                                <input id="card-number-part-2" class="card-number form-control text-center margin-left-10" type="text" size="4" placeholder="XXXX" ng-model="card_number_part.two" autocomplete="off" ng-maxlength="4" ng-change="set_card_number_validity()" required>
+
+                                <input id="card-number-part-3" class="card-number form-control text-center" type="text" size="4" placeholder="XXXX" ng-model="card_number_part.three" autocomplete="off" ng-maxlength="4" ng-change="set_card_number_validity()" required>
+
+                                <input id="card-number-part-4" class="card-number form-control text-center" type="text" size="4" placeholder="XXXX" name="card_number_part_four" ng-model="card_number_part.four" autocomplete="off" ng-blur="visited_card_number_part_four = true" ng-maxlength="4" ng-change="set_card_number_validity()" required>
+                            </span> -->
+
+                            <!-- American Express Card Number Inputs -->
+                            <!-- <span ng-show="card_type == 'american_express'">
+                                <input id="card-number-part-2" class="card-number form-control text-center margin-left-10" type="text" size="6" placeholder="XXXXXX" ng-model="card_number_part.two" autocomplete="off" ng-maxlength="6" ng-change="set_card_number_validity()" required>
+
+                                <input id="card-number-part-3" class="card-number form-control text-center" type="text" size="5" placeholder="XXXXX" name="card_number_part_three" ng-model="card_number_part.three" autocomplete="off" ng-blur="visited_card_number_part_three = true" ng-change="set_card_number_validity()" required>
+                            </span> -->
+                        </div>
+
+                        <input type="hidden" data-encrypted-name="number" value="{{card_number_part.one}}{{card_number_part.two}}{{card_number_part.three}}{{card_number_part.four}}" autocomplete="off" readonly>
+
+                         <p ng-show="( ((form.payment.card_number_part_three.$dirty && visited_card_number_part_three) || (form.payment.card_number_part_four.$dirty && visited_card_number_part_four)) || submitted) && !card_number_is_valid" class="input-row clearfix input-error-message">
+                            Ogiltigt kortnummer
+                        </p>
+
+                        <div class="input-row clearfix">
+                            <label for="card-expire-month" class="width-110">Månad / År</label>
+                            <input id="card-expire-month" name="card_expire_month" ng-model="card_expire_month" ng-blur="visited_card_expire_month = true" size="2" class="form-control text-center" type="text" ng-maxlength="2" ng-pattern="/^0[0-9]|1[0-2]$/" placeholder="MM" required>
+
+                            <input id="card-expire-year" name="card_expire_year" ng-model="card_expire_year" ng-blur="visited_card_expire_year = true" size="2" class="form-control text-center" type="text" ng-maxlength="2" ng-pattern="/^[1-9][0-9]$/" placeholder="YY" required>
+
+                            <label id="card-cvv-label" for="card-cvv" class="margin-left-10 width-60">CVV</label>
+                            <input id="card-cvv" class="form-control text-center" type="text" size="4" ng-model="card_cvv_number" ng-blur="visited_card_cvv = true" ng-change="set_card_cvv_validity(card_cvv_number)" placeholder="CVV" autocomplete="off" data-encrypted-name="cvv" />
+                        </div>
+                        <p ng-show="(((form.payment.card_expire_month.$dirty && form.payment.card_expire_month.$invalid && visited_card_expire_month) || (form.payment.card_expire_year.$dirty && form.payment.card_expire_year.$invalid && visited_card_expire_year)) || (visited_card_cvv && !card_cvv_is_valid)) || ((card_expire_month.$invalid && submitted) || (form.payment.card_expire_year.$invalid && submitted) || (!card_cvv_is_valid && submitted))" class="input-row clearfix input-error-message">
+                            Ogiltigt giltighetsdatum eller CVV-kod
+                        </p>
+                    <!-- </form> -->
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer mos-modal-footer clearfix">
+            <div class="pull-left">
+                <p class="total-amount">Totalt: 599 SEK</p>
+                <p class="total-details">
+                    (Inkl. frakt &amp; moms)
+                    <a href="" class="payment-conditions "> Betalningsvillkor</a>
+                </p>
+            </div>
+            <div class="pull-right">
+                <button class="mos-button payment-button green" ng-click="submit_payment()" ng-disabled="processing_payment">{{submit_payment_button_text}}</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="modal">
+    <div class="mos-modal">
+        <div class="mos-modal-header clearfix">
+            <span ng-show="modalTitle">
+                {{ modalTitle }}
+            </span>
+            <span class="pull-right">
+                <a href="" class="mos-modal-close" ng-click="$hide()">
+                  Stäng
+                </a>
+                <a href="" class="mos-modal-close close-box" ng-click="$hide()">
+                    X
+                </a>
+            </span>
+        </div>
+        <div class="mos-modal-body" ng-transclude>
+        </div>
+    </div>
+</div>

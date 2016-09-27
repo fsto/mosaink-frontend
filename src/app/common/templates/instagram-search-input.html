@@ -1,0 +1,42 @@
+<div class="search-container">
+  <input
+      type="text"
+      class="search"
+      name="searchQuery"
+      placeholder="Search Instagram User"
+      ng-focus="focused()"
+      ng-model="searchQuery"
+      ng-value="searchQuery"
+      ng-change="search(searchQuery)"
+      ng-keyup="keyPressed($event)"
+  >
+  <!-- Search result -->
+  <div class="results-container" ng-show="searchQuery">
+      <div class="results">
+          <div class="ui list">
+              <a
+                  href=""
+                  class="item-container"
+                  ng-click="gotoUrl(getRedirectUrl(result.username))"
+                  ng-class="{selected: $index === selectedUserIndex}"
+                  ng-repeat="result in results"
+                  ng-mouseover="selectUser($index)"
+              >
+                  <div class="item">
+                      <img class="small profile-image" ng-src="{{ result.profile_picture }}">
+                      <div class="content">
+                          <div class="header">
+                              @{{ result.username }} <span ng-if="result.full_name">({{ result.full_name }})</span>
+                          </div>
+                          <div class="description">
+                              <!-- <span ng-if="result.bio">
+                                  {{ result.bio }}
+                              </span> -->
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div> <!-- End of search results container -->
+</div>
